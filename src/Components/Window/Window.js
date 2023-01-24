@@ -5,22 +5,20 @@ import TaskField from "../TaskField/TaskField";
 class Window extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { taskInfo: "" };
+    this.state = { taskInfo: "123" };
   }
+
   handleClick = (taskText) => {
-    console.log(this.state);
     this.setState((state, props) => ({
       taskInfo: taskText,
     }));
-    this.setState({ taskInfo: taskText });
   };
-  componentDidMount() {}
+
   render() {
-    console.log("state in parent", this.state);
     return (
       <div className="windowField">
         <Search handleClick={this.handleClick} />
-        <TaskField />
+        <TaskField test={this.state.taskInfo} />
       </div>
     );
   }

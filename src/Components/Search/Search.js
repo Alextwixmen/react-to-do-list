@@ -1,24 +1,31 @@
 import React from "react";
 import "./Search.css";
-import ActiveTask from "../ActiveTask/ActiveTask";
+
 class Search extends React.Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.state = { taskText: "" };
   }
+
   handleChange(event) {
-    this.setState({ taskText: event.target.value });
+    this.setState((prev) => ({ taskText: event.target.value }));
   }
+
   render() {
+    console.log(this.props);
     return (
       <div className="searchWindow">
         <div className="searchField">
-          <input type={"text"} onChange={this.handleChange} />
+          <input
+            value={this.state.taskText}
+            type={"text"}
+            onChange={this.handleChange}
+          />
           <div className="buttons">
             <button
               className="addBtn btns"
-              onClick={() => this.props.handleClick(this.taskText)}
+              onClick={() => this.props.handleClick(this.state.taskText)}
             >
               Add
             </button>

@@ -5,14 +5,16 @@ class ActiveTask extends React.Component {
     super(props);
     this.state = { taskText: this.props.taskText };
   }
-  setState() {}
+
   changeState() {
     this.setState((state, prop) => {
       this.state = { taskText: this.props.taskText };
     });
   }
+
   render() {
-    return <div className="ActiveTaskField"></div>;
+    console.log(this.props.aboba);
+    return <div className="ActiveTaskField">{this.props.aboba}</div>;
   }
 }
 
