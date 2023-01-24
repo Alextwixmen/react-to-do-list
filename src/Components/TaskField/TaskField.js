@@ -9,7 +9,7 @@ class TaskField extends React.Component {
   render() {
     return (
       <div className="taskField">
-        <ActiveTask aboba={this.props.test} />
+        <ActiveTask activeTaskText={this.props.taskText} />
         <InactiveTask />
       </div>
     );

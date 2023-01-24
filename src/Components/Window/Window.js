@@ -5,9 +5,8 @@ import TaskField from "../TaskField/TaskField";
 class Window extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { taskInfo: "123" };
+    this.state = { taskInfo: "" };
   }
-
   handleClick = (taskText) => {
     this.setState((state, props) => ({
       taskInfo: taskText,
@@ -18,7 +17,7 @@ class Window extends React.Component {
     return (
       <div className="windowField">
         <Search handleClick={this.handleClick} />
-        <TaskField test={this.state.taskInfo} />
+        <TaskField taskText={this.state.taskInfo} />
       </div>
     );
   }
