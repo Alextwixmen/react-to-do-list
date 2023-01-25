@@ -12,7 +12,6 @@ class Search extends React.Component {
     this.setState((prev) => ({ taskText: event.target.value }));
   }
   render() {
-    console.log("внутри класса Search");
     return (
       <div className="searchWindow">
         <div className="searchField">

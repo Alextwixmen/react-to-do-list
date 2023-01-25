@@ -1,6 +1,6 @@
 import React from "react";
 import "./TaskField.css";
-import ActiveTask from "../ActiveTask/ActiveTask.js";
+import ActiveTasks from "../ActiveTask/ActiveTasks.js";
 import InactiveTask from "../InactiveTask/InactiveTask";
 class TaskField extends React.Component {
   constructor(props) {
@@ -9,7 +9,10 @@ class TaskField extends React.Component {
   render() {
     return (
       <div className="taskField">
-        <ActiveTask activeTaskText={this.props.taskText} />
+        <ActiveTasks
+          taskList={this.props.taksList}
+          handleDelete={this.props.handleDelete}
+        />
         <InactiveTask />
       </div>
     );
