@@ -12,22 +12,14 @@ class InactiveTask extends React.Component {
         {this.props.activeTaskList.map((element, index) => {
           if (element.isDone) {
             return (
-              <div className="task" key={element.value + index}>
+              <div className="task inactiveTask" key={element.value + index}>
                 {element.value}
                 <div className="taskButtons">
                   <button
                     onClick={() => this.props.handleDelete({ ...element }.id)}
                     className="taskButtons deleteTask"
                   >
-                    Del
-                  </button>
-                  <button
-                    onClick={() =>
-                      this.props.handleDoneClick({ ...element }.id)
-                    }
-                    className="taskButtons doneTask"
-                  >
-                    Done
+                    Delete
                   </button>
                 </div>
               </div>

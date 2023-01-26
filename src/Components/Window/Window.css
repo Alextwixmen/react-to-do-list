@@ -3,5 +3,8 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    background-color: azure;
+    text-align: center;
+    align-items: center;
+    background-color: rgb(230, 227, 227);
+    padding-top: 5%;
 }

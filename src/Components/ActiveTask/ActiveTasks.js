@@ -15,13 +15,13 @@ class ActiveTasks extends React.Component {
           if (element.isDone === false) {
             return (
               <div className="task" key={element.value + index}>
-                {element.value}
+                <span className="taskText">{element.value}</span>
                 <div className="taskButtons">
                   <button
                     onClick={() => this.props.handleDelete({ ...element }.id)}
                     className="taskButtons deleteTask"
                   >
-                    Del
+                    Delete
                   </button>
                   <button
                     onClick={() =>

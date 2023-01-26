@@ -17,7 +17,7 @@ class Window extends React.Component {
     super(props);
     this.state = { activeTasks: [] };
   }
-  handleAddClick = (taskText) => {
+  handleAddClick = (taskText, state) => {
     if (taskText.trim("") != "") {
       this.setState({
         activeTasks: [

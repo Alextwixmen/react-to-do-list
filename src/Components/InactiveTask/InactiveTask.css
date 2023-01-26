@@ -1,12 +1,20 @@
 .InactiveTaskField {
-    width: 100%;
-    min-height: 200px;
-    border: 1px solid black;
-    display: flex;
-    flex-wrap: row wrap;
-    gap: 1%;
-    padding-top: 0.5%;
-    padding-bottom: 0.5%;
-    padding-left: 0.5%;
-    transition: 1s ease all;
+    max-width: 100%;
+        min-height: 250px;
+        height: fit-content;
+        border: 1px solid black;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1%;
+        padding-top: 0.5%;
+        padding-bottom: 0.5%;
+        padding-left: 0.5%;
+        margin-bottom: 10%;
+        transition: 1s ease all;
 }
+.inactiveTask{
+    background-color: rgba(173, 255, 47, 0.5);
+    opacity: 0.5;
+}
+ 

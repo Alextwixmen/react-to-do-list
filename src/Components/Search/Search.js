@@ -11,25 +11,31 @@ class Search extends React.Component {
   handleChange(event) {
     this.setState((prev) => ({ taskText: event.target.value }));
   }
+  handleClick = () => {
+    this.props.handleAddClick(this.state.taskText);
+    this.setState({ taskText: "" });
+  };
   render() {
     return (
       <div className="searchWindow">
-        <div className="searchField">
+        <form className="searchField">
           <input
+            className="inputSearch"
             value={this.state.taskText}
-            type={"text"}
+            type="input"
             onChange={this.handleChange}
+            placeholder="Task"
+            name="task"
+            id="task"
+            required
           />
           <div className="buttons">
-            <button
-              className="addBtn btns"
-              onClick={() => this.props.handleAddClick(this.state.taskText)}
-            >
+            <button className="addBtn btns" onClick={() => this.handleClick()}>
               Add
             </button>
             <button className="findBtn btns">Find</button>
           </div>
-        </div>
+        </form>
       </div>
     );
   }

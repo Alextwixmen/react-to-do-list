@@ -1,3 +1,6 @@
+*{
+    font-family: 'Aboreto', cursive;
+}
 #root{
     display: flex;
     text-align: center;
@@ -5,4 +8,8 @@
     width: 100%;
     margin:  0 auto;
     height: 100vh;
+}
+body{
+    background-color: rgb(230, 227, 227);
+    overflow-x: hidden;
 }
