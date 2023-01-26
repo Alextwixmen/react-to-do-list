@@ -7,13 +7,22 @@ class TaskField extends React.Component {
     super(props);
   }
   render() {
+    console.log(
+      "внутри компонента TaskField с пропсом",
+      this.props.activeTaskList
+    );
     return (
       <div className="taskField">
         <ActiveTasks
-          taskList={this.props.taksList}
+          activeTaskList={this.props.activeTaskList}
           handleDelete={this.props.handleDelete}
+          handleDoneClick={this.props.handleDoneClick}
         />
-        <InactiveTask />
+        <InactiveTask
+          activeTaskList={this.props.activeTaskList}
+          handleDelete={this.props.handleDelete}
+          handleDoneClick={this.props.handleDoneClick}
+        />
       </div>
     );
   }

@@ -23,7 +23,7 @@ class Search extends React.Component {
           <div className="buttons">
             <button
               className="addBtn btns"
-              onClick={() => this.props.handleClick(this.state.taskText)}
+              onClick={() => this.props.handleAddClick(this.state.taskText)}
             >
               Add
             </button>

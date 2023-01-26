@@ -15,29 +15,51 @@ function makeid(length) {
 class Window extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { arrWithTasks: [] };
+    this.state = { activeTasks: [] };
   }
-  handleClick = (taskText) => {
+  handleAddClick = (taskText) => {
+    if (taskText.trim("") != "") {
+      this.setState({
+        activeTasks: [
+          ...this.state.activeTasks,
+          {
+            value: taskText,
+            id: `${taskText}` + `${makeid(2)}`,
+            isDone: false,
+          },
+        ],
+      });
+    }
+  };
+  handleDoneClick = (id) => {
+    console.log("done with id", id, "state ===", this.state);
     this.setState({
-      arrWithTasks: [
-        ...this.state.arrWithTasks,
-        { value: taskText, id: `${taskText}` + `${makeid(2)}` },
-      ],
+      activeTasks: this.state.activeTasks.map((elem) => {
+        if (elem.id === id) {
+          elem.isDone = true;
+          return elem;
+        } else {
+          return elem;
+        }
+      }),
     });
   };
-  deleteTask = (id) => {
+  handleDeleteTask = (id) => {
+    console.log("delete with", id, "state ===", this.state);
     this.setState({
-      arrWithTasks: this.state.arrWithTasks.filter((elem) => elem.id != id),
+      activeTasks: this.state.activeTasks.filter((elem) => elem.id != id),
     });
   };
 
   render() {
+    console.log("внутри компонента Window со стейтом", this.state.activeTasks);
     return (
       <div className="windowField">
-        <Search handleClick={this.handleClick} />
+        <Search handleAddClick={this.handleAddClick} />
         <TaskField
-          taksList={this.state.arrWithTasks}
-          handleDelete={this.deleteTask}
+          activeTaskList={this.state.activeTasks}
+          handleDelete={this.handleDeleteTask}
+          handleDoneClick={this.handleDoneClick}
         />
       </div>
     );
