@@ -6,7 +6,7 @@ class InactiveTask extends React.Component {
     super(props);
   }
   render() {
-    console.log("InactiveTask c пропсом", this.props.activeTaskList);
+    // console.log("InactiveTask c пропсом", this.props.activeTaskList);
     return (
       <div className="InactiveTaskField">
         {this.props.activeTaskList.map((element, index) => {

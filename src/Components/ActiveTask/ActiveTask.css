@@ -73,3 +73,6 @@
     font-size:120%;
     color: gray;
 }
+.visible{
+    display: none;
+}

@@ -5,16 +5,25 @@ class ActiveTasks extends React.Component {
     super(props);
   }
   render() {
-    console.log(
-      "внутри компонента ActiveTasks с пропсом",
-      this.props.activeTaskList
-    );
+    this.props.activeTaskList.forEach((task) => {
+      if (task.isHiden === true) {
+        console.log("нужно удалить таску", task);
+      } else {
+        console.log("все не своих местах");
+      }
+    });
+    // console.log(
+    //   "внутри компонента ActiveTasks с пропсом",
+    //   this.props.activeTaskList
+    // );
+    // style={{ left: this.state.ofset, width: this.state.containerWidth }}
     return (
       <div className="ActiveTaskField">
         {this.props.activeTaskList.map((element, index) => {
+          console.log("syka", element);
           if (element.isDone === false) {
             return (
-              <div className="task" key={element.value + index}>
+              <div className="task" key={element.value + index} style={{}}>
                 <span className="taskText">{element.value}</span>
                 <div className="taskButtons">
                   <button

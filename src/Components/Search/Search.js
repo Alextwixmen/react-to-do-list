@@ -24,7 +24,7 @@ class Search extends React.Component {
             value={this.state.taskText}
             type="input"
             onChange={this.handleChange}
-            placeholder="Task"
+            placeholder="Add Task"
             name="task"
             id="task"
             required
@@ -33,7 +33,6 @@ class Search extends React.Component {
             <button className="addBtn btns" onClick={() => this.handleClick()}>
               Add
             </button>
-            <button className="findBtn btns">Find</button>
           </div>
         </form>
       </div>

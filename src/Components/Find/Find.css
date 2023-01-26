@@ -1,0 +1,40 @@
+.FindWindow{
+    width: 40%;
+        height: 5%;
+        margin: 0 auto;
+        /* border: 1px solid black; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 5%;
+}
+.findField{
+    display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 2%;
+        width: 100%;
+        height: 100%;
+        padding-left: 1%;
+        padding-right: 1%;
+}
+.findInput{
+    font-family: inherit;
+        width: 100%;
+        border: 0;
+        border-bottom: 2px solid gray;
+        outline: 0;
+        font-size: 200%;
+        padding: 7px 0;
+        background: transparent;
+        transition: border-color 0.2s;
+}
+.buttonFindContainer{
+    display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+}
+
+
+    

@@ -2,6 +2,7 @@ import React from "react";
 import Search from "../Search/Search";
 import "./Window.css";
 import TaskField from "../TaskField/TaskField";
+import Find from "../Find/Find";
 function makeid(length) {
   let result = "";
   let characters =
@@ -26,6 +27,7 @@ class Window extends React.Component {
             value: taskText,
             id: `${taskText}` + `${makeid(2)}`,
             isDone: false,
+            isHiden: false,
           },
         ],
       });
@@ -45,17 +47,20 @@ class Window extends React.Component {
     });
   };
   handleDeleteTask = (id) => {
-    console.log("delete with", id, "state ===", this.state);
     this.setState({
       activeTasks: this.state.activeTasks.filter((elem) => elem.id != id),
     });
   };
-
+  handleFind = (taskText) => {};
   render() {
-    console.log("внутри компонента Window со стейтом", this.state.activeTasks);
+    // console.log("внутри компонента Window со стейтом", this.state.activeTasks);
     return (
       <div className="windowField">
         <Search handleAddClick={this.handleAddClick} />
+        <Find
+          handleFind={this.handleFind}
+          activeTaskList={this.state.activeTasks}
+        />
         <TaskField
           activeTaskList={this.state.activeTasks}
           handleDelete={this.handleDeleteTask}
