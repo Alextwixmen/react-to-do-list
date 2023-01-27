@@ -51,7 +51,33 @@ class Window extends React.Component {
       activeTasks: this.state.activeTasks.filter((elem) => elem.id != id),
     });
   };
-  handleFind = (taskText) => {};
+  // нужно отправлять отфильтрованный стейт
+  handleTaskText = (taskText) => {
+    // console.log(taskText);
+    function checkTaskText(task) {
+      let result;
+      for (let i = 0; i < taskText.length; i++) {
+        if (taskText[i] === task.value[i]) {
+          console.log(task.value[i], i);
+          result = true;
+        } else {
+          result = false;
+          // break;
+          // return false;
+        }
+      }
+      return [result, task];
+    }
+    this.state.activeTasks.forEach((task) => {
+      // checkTaskText(task);
+      console.log(checkTaskText(task));
+    });
+    console.log("стейт после цикла", this.state.activeTasks);
+  };
+  handleFind = (taskText) => {
+    this.handleTaskText(taskText);
+    //  console.log("внутри handleTaskText c текстом", taskText);
+  };
   render() {
     // console.log("внутри компонента Window со стейтом", this.state.activeTasks);
     return (
