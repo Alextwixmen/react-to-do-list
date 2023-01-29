@@ -1,5 +1,6 @@
 .InactiveTaskField {
-    max-width: 100%;
+
+        max-width: 100%;
         min-height: 250px;
         height: fit-content;
         border: 1px solid black;
@@ -12,8 +13,10 @@
         padding-left: 0.5%;
         margin-bottom: 10%;
         transition: 1s ease all;
+        
 }
 .inactiveTask{
+        position: relative;
     background-color: rgba(173, 255, 47, 0.5);
     opacity: 0.5;
 }

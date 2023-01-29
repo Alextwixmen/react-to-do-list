@@ -16,27 +16,27 @@ function makeid(length) {
 class Window extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { activeTasks: [] };
+    this.state = { allTasks: [], filterText: "" };
+    this.filteredArr = null;
   }
   handleAddClick = (taskText, state) => {
     if (taskText.trim("") != "") {
       this.setState({
-        activeTasks: [
-          ...this.state.activeTasks,
+        allTasks: [
+          ...this.state.allTasks,
           {
             value: taskText,
             id: `${taskText}` + `${makeid(2)}`,
             isDone: false,
-            isHiden: false,
+            isSearch: false,
           },
         ],
       });
     }
   };
   handleDoneClick = (id) => {
-    console.log("done with id", id, "state ===", this.state);
     this.setState({
-      activeTasks: this.state.activeTasks.map((elem) => {
+      allTasks: this.state.allTasks.map((elem) => {
         if (elem.id === id) {
           elem.isDone = true;
           return elem;
@@ -48,52 +48,44 @@ class Window extends React.Component {
   };
   handleDeleteTask = (id) => {
     this.setState({
-      activeTasks: this.state.activeTasks.filter((elem) => elem.id != id),
+      allTasks: this.state.allTasks.filter((elem) => elem.id != id),
     });
   };
+
   // нужно отправлять отфильтрованный стейт
-  handleTaskText = (taskText) => {
-    // console.log(taskText);
-    function checkTaskText(task) {
-      let result;
-      for (let i = 0; i < taskText.length; i++) {
-        if (taskText[i] === task.value[i]) {
-          console.log(task.value[i], i);
-          result = true;
-        } else {
-          result = false;
-          // break;
-          // return false;
-        }
-      }
-      return [result, task];
-    }
-    this.state.activeTasks.forEach((task) => {
-      // checkTaskText(task);
-      console.log(checkTaskText(task));
-    });
-    console.log("стейт после цикла", this.state.activeTasks);
-  };
   handleFind = (taskText) => {
-    this.handleTaskText(taskText);
-    //  console.log("внутри handleTaskText c текстом", taskText);
+    this.setState({ filterText: taskText });
+    if (taskText != "") {
+      this.filteredArr = this.state.allTasks.filter((task) => {
+        if (task.value.includes(taskText)) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+    }
+
+    // console.log("внутри handleFind с ", this.state);
+    // console.log(this.filteredArr);
   };
   render() {
-    // console.log("внутри компонента Window со стейтом", this.state.activeTasks);
+    let allTasks = this.state.allTasks;
+    if (this.state.filterText != "") {
+      allTasks = this.filteredArr;
+    }
     return (
       <div className="windowField">
         <Search handleAddClick={this.handleAddClick} />
-        <Find
-          handleFind={this.handleFind}
-          activeTaskList={this.state.activeTasks}
-        />
+        <Find handleFind={this.handleFind} allTasks={this.state.allTasks} />
         <TaskField
-          activeTaskList={this.state.activeTasks}
+          allTasks={allTasks}
           handleDelete={this.handleDeleteTask}
           handleDoneClick={this.handleDoneClick}
         />
       </div>
     );
+
+    // console.log("внутри компонента Window со стейтом", this.state.activeTasks);
   }
 }
 export default Window;

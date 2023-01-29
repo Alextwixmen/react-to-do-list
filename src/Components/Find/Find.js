@@ -1,11 +1,13 @@
 import React from "react";
 import "./Find.css";
+
 class Find extends React.Component {
   constructor(props) {
     super(props);
   }
-  //   cюда в пропсах приходит массив с активными тасками под props.activeTaskList и функция props.handleFindButton
+  //   cюда в пропсах приходит массив с активными тасками под props.allTasks и функция props.handleFindButton
   findHandler = (event) => {
+    // console.log("state родителя состоит из", this.props.allTasks);
     let taskText = event.target.value;
     this.props.handleFind(taskText);
   };

@@ -10,13 +10,12 @@ class TaskField extends React.Component {
     return (
       <div className="taskField">
         <ActiveTasks
-          activeTaskList={this.props.activeTaskList}
+          allTasks={this.props.allTasks}
           handleDelete={this.props.handleDelete}
           handleDoneClick={this.props.handleDoneClick}
-          zopa={this.props.zopa}
         />
         <InactiveTask
-          activeTaskList={this.props.activeTaskList}
+          allTasks={this.props.allTasks}
           handleDelete={this.props.handleDelete}
           handleDoneClick={this.props.handleDoneClick}
         />

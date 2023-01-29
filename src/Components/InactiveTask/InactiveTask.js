@@ -6,22 +6,19 @@ class InactiveTask extends React.Component {
     super(props);
   }
   render() {
-    // console.log("InactiveTask c пропсом", this.props.activeTaskList);
     return (
       <div className="InactiveTaskField">
-        {this.props.activeTaskList.map((element, index) => {
+        {this.props.allTasks.map((element, index) => {
           if (element.isDone) {
             return (
               <div className="task inactiveTask" key={element.value + index}>
                 {element.value}
-                <div className="taskButtons">
-                  <button
-                    onClick={() => this.props.handleDelete({ ...element }.id)}
-                    className="taskButtons deleteTask"
-                  >
-                    Delete
-                  </button>
-                </div>
+                <button
+                  onClick={() => this.props.handleDelete({ ...element }.id)}
+                  className="taskButtons deleteTask"
+                >
+                  <i class="fa fa-trash"></i>
+                </button>
               </div>
             );
           }
