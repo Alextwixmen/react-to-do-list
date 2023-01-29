@@ -11,7 +11,8 @@ class Search extends React.Component {
   handleChange(event) {
     this.setState((prev) => ({ taskText: event.target.value }));
   }
-  handleClick = () => {
+  handleClick = (event) => {
+    event.preventDefault();
     this.props.handleAddClick(this.state.taskText);
     this.setState({ taskText: "" });
   };
@@ -27,10 +28,9 @@ class Search extends React.Component {
             placeholder="Add Task"
             name="task"
             id="task"
-            required
           />
           <div className="buttons">
-            <button className="addBtn btns" onClick={() => this.handleClick()}>
+            <button className="addBtn btns" onClick={this.handleClick}>
               Add
             </button>
           </div>

@@ -3,6 +3,7 @@ import Search from "../Search/Search";
 import "./Window.css";
 import TaskField from "../TaskField/TaskField";
 import Find from "../Find/Find";
+import Settings from "../Settings/Settings";
 function makeid(length) {
   let result = "";
   let characters =
@@ -16,8 +17,8 @@ function makeid(length) {
 class Window extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { allTasks: [], filterText: "" };
-    this.filteredArr = null;
+    this.state = { allTasks: [], filterText: "", confirmDelete: true };
+    this.filteredArr = undefined;
   }
   handleAddClick = (taskText, state) => {
     if (taskText.trim("") != "") {
@@ -64,9 +65,12 @@ class Window extends React.Component {
         }
       });
     }
-
-    // console.log("внутри handleFind с ", this.state);
-    // console.log(this.filteredArr);
+  };
+  handleCheckBox = (checkBox) => {
+    if (checkBox === false) {
+      this.setState({ confirmDelete: false });
+    }
+    console.log("хендлим чекбокс внутри виндоу", checkBox);
   };
   render() {
     let allTasks = this.state.allTasks;
@@ -81,7 +85,9 @@ class Window extends React.Component {
           allTasks={allTasks}
           handleDelete={this.handleDeleteTask}
           handleDoneClick={this.handleDoneClick}
+          confirmDelete={this.state.confirmDelete}
         />
+        <Settings handleCheckBox={this.handleCheckBox} />
       </div>
     );
 

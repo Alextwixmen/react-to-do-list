@@ -7,6 +7,7 @@ class TaskField extends React.Component {
     super(props);
   }
   render() {
+    console.log("this.props в таски филд", this.props);
     return (
       <div className="taskField">
         <ActiveTasks
