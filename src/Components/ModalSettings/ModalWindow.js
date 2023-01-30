@@ -6,16 +6,16 @@ class ModalWindow extends React.Component {
     super(props);
     this.chekBox = false;
   }
-  handleSeetingsBtn = (event) => {
-    console.log("нажали на настройки", event);
-  };
+  // handleSeetingsBtn = (event) => {
+  //   console.log("нажали на настройки", event);
+  // };
   handleCheckBox = (e) => {
     this.props.handleCheckBox(e.target.checked);
   };
   render() {
-    let isSHow = null;
+    let isSHow = "none";
     if (this.props.isShowModal != false) {
-      isSHow = "none";
+      isSHow = "block";
     }
     return (
       <div className="settingsContainer" style={{ display: isSHow }}>
