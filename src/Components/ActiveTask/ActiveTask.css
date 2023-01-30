@@ -96,3 +96,6 @@
 .visible{
     display: none;
 }
+.ActiveTaskField:empty{
+    height: 250px;
+}

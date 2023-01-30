@@ -3,6 +3,7 @@ import Search from "../Search/Search";
 import "./Window.css";
 import TaskField from "../TaskField/TaskField";
 import Find from "../Find/Find";
+import ModalWindow from "../ModalSettings/ModalWindow";
 import Settings from "../Settings/Settings";
 function makeid(length) {
   let result = "";
@@ -17,7 +18,12 @@ function makeid(length) {
 class Window extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { allTasks: [], filterText: "", confirmDelete: true };
+    this.state = {
+      allTasks: [],
+      filterText: "",
+      delWithoutConfirm: false,
+      isShowModal: false,
+    };
     this.filteredArr = undefined;
   }
   handleAddClick = (taskText, state) => {
@@ -48,17 +54,32 @@ class Window extends React.Component {
     });
   };
   handleDeleteTask = (id) => {
-    this.setState({
-      allTasks: this.state.allTasks.filter((elem) => elem.id != id),
-    });
+    if (this.state.delWithoutConfirm) {
+      this.setState({
+        allTasks: this.state.allTasks.filter((elem) => elem.id != id),
+      });
+    } else {
+      if (window.confirm("Разрешить удаление?")) {
+        this.setState({
+          allTasks: this.state.allTasks.filter((elem) => elem.id != id),
+        });
+      }
+    }
   };
 
+  // var repl = str.replace(/^\s+|\s+$|\s+(?=\s)/g, "");
   // нужно отправлять отфильтрованный стейт
   handleFind = (taskText) => {
     this.setState({ filterText: taskText });
     if (taskText != "") {
+      let findTextWithoutSpaces = taskText.replace(/^\s+|\s+$|\s+(?=\s)/g, "");
       this.filteredArr = this.state.allTasks.filter((task) => {
-        if (task.value.includes(taskText)) {
+        if (
+          task.value
+            .replace(/^\s+|\s+$|\s+(?=\s)/g, "")
+            .toLowerCase()
+            .includes(findTextWithoutSpaces.toLowerCase())
+        ) {
           return true;
         } else {
           return false;
@@ -66,11 +87,11 @@ class Window extends React.Component {
       });
     }
   };
-  handleCheckBox = (checkBox) => {
-    if (checkBox === false) {
-      this.setState({ confirmDelete: false });
-    }
-    console.log("хендлим чекбокс внутри виндоу", checkBox);
+  handleCheckBox = (checkBoxValue) => {
+    this.setState({ delWithoutConfirm: checkBoxValue });
+  };
+  handleSettingsButon = () => {
+    this.setState({ isShowModal: !this.state.isShowModal });
   };
   render() {
     let allTasks = this.state.allTasks;
@@ -85,13 +106,14 @@ class Window extends React.Component {
           allTasks={allTasks}
           handleDelete={this.handleDeleteTask}
           handleDoneClick={this.handleDoneClick}
-          confirmDelete={this.state.confirmDelete}
         />
-        <Settings handleCheckBox={this.handleCheckBox} />
+        <ModalWindow
+          handleCheckBox={this.handleCheckBox}
+          isShowModal={this.state.isShowModal}
+        />
+        <Settings handleSettingsButon={this.handleSettingsButon} />
       </div>
     );
-
-    // console.log("внутри компонента Window со стейтом", this.state.activeTasks);
   }
 }
 export default Window;

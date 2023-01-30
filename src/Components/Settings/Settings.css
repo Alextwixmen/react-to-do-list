@@ -1,16 +1,5 @@
-.settingsContainer{
+.settingsWrapper{
     position: absolute;
-    top: 0px;
-    left: 0px;
-}
-.settingsButton{
-    animation:ease-in;
-    background-color: inherit;
-    border: none;
-    cursor: pointer;
-    font-size: 200%;
-    color: gray;
-}
-.settingsButton:hover{
-    color: black;
+    top: 0;
+    left: 0;
 }

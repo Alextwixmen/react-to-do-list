@@ -1,0 +1,32 @@
+.settingsContainer{
+    width: 250px;
+    top: 8%;
+        left: 10%;
+        transform: translate(-20%, 0);
+        position: absolute;
+}
+.hiden{
+    visibility: hidden;
+}
+.settingsButton{
+    animation:ease-in;
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+    font-size: 200%;
+    color: gray;
+}
+.settingsButton:hover{
+    color: black;
+}
+.modalWindow{
+    background-color: azure;
+    padding: 5px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: auto;
+    height: 200px;
+    border: 1px solid black;
+    border-radius: 5%;
+}
