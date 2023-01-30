@@ -26,6 +26,21 @@ class Window extends React.Component {
     };
     this.filteredArr = undefined;
   }
+  onClickOutsideHandler = (e) => {
+    if (
+      e.target.className === "labelForSettings" ||
+      e.target.className === "modalForm" ||
+      e.target.className === "checkBox" ||
+      e.target.className === "modalWindow" ||
+      e.target.className === "fa-solid fa-gear"
+    ) {
+    } else {
+      this.setState({ isShowModal: false });
+    }
+  };
+  componentDidMount() {
+    window.addEventListener("click", this.onClickOutsideHandler);
+  }
   handleAddClick = (taskText, state) => {
     if (taskText.trim("") != "") {
       this.setState({
@@ -67,7 +82,6 @@ class Window extends React.Component {
     }
   };
 
-  // var repl = str.replace(/^\s+|\s+$|\s+(?=\s)/g, "");
   // нужно отправлять отфильтрованный стейт
   handleFind = (taskText) => {
     this.setState({ filterText: taskText });
@@ -92,6 +106,7 @@ class Window extends React.Component {
   };
   handleSettingsButon = () => {
     this.setState({ isShowModal: !this.state.isShowModal });
+    // console.log(this.state.isShowModal);
   };
   render() {
     let allTasks = this.state.allTasks;

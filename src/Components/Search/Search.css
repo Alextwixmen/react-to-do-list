@@ -12,7 +12,7 @@
 }
 .searchWindow{
     width: 40%;
-    height: 5%;
+    height: 10vh;
     margin:  0 auto;
     /* border: 1px solid black; */
     display: flex;

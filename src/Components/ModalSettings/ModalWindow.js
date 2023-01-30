@@ -26,8 +26,11 @@ class ModalWindow extends React.Component {
               name="checBox"
               type={"checkbox"}
               onChange={(e) => this.handleCheckBox(e)}
+              className="checkBox"
             />
-            <label htmlFor="checBox">Удалять задачу без подтверждения</label>
+            <label className="labelForSettings" htmlFor="checBox">
+              Удалять задачу без подтверждения
+            </label>
           </form>
         </div>
       </div>
