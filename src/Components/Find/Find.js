@@ -1,4 +1,5 @@
 import React from "react";
+import Context from "../..";
 import "./Find.css";
 
 class Find extends React.Component {
@@ -11,20 +12,34 @@ class Find extends React.Component {
     this.props.handleFind(taskText);
   };
   render() {
+    console.log("рендерим файнд");
     return (
-      <div className="FindWindow">
-        <div className="findField">
-          <input
-            className="findInput"
-            type="input"
-            onChange={this.findHandler}
-            placeholder="Find Task"
-          ></input>
-          {/* <div className="buttonFindContainer">
+      <Context.Consumer>
+        {(value) => {
+          let appLang;
+          if (this.props.whatIsLang === "rus") {
+            appLang = value.findInput.rus;
+          } else {
+            appLang = value.findInput.eng;
+          }
+          // console.log(value);
+          return (
+            <div className="FindWindow">
+              <div className="findField">
+                <input
+                  className="findInput"
+                  type="input"
+                  onChange={this.findHandler}
+                  placeholder={appLang}
+                ></input>
+                {/* <div className="buttonFindContainer">
             <button className="findButton btns">Find</button>
           </div> */}
-        </div>
-      </div>
+              </div>
+            </div>
+          );
+        }}
+      </Context.Consumer>
     );
   }
 }

@@ -23,15 +23,13 @@ class Window extends React.Component {
       filterText: "",
       delWithoutConfirm: false,
       isShowModal: false,
+      appLang: "eng",
     };
     this.filteredArr = undefined;
   }
   onClickOutsideHandler = (e) => {
     if (
-      e.target.className === "labelForSettings" ||
-      e.target.className === "modalForm" ||
-      e.target.className === "checkBox" ||
-      e.target.className === "modalWindow" ||
+      e.target.closest(".modalWindow") ||
       e.target.className === "fa-solid fa-gear"
     ) {
     } else {
@@ -101,22 +99,44 @@ class Window extends React.Component {
       });
     }
   };
+
   handleCheckBox = (checkBoxValue) => {
     this.setState({ delWithoutConfirm: checkBoxValue });
   };
   handleSettingsButon = () => {
     this.setState({ isShowModal: !this.state.isShowModal });
-    // console.log(this.state.isShowModal);
+  };
+  handleAppLanguage = (e) => {
+    if (e.target.className === "rus") {
+      this.setState({ appLang: "rus" });
+    } else {
+      this.setState({ appLang: "eng" });
+    }
   };
   render() {
     let allTasks = this.state.allTasks;
     if (this.state.filterText != "") {
       allTasks = this.filteredArr;
     }
+
+    // <Context.Consumer>
+    //   {(value) => (
+    //     <div className="App">
+    //       <Window />
+    //     </div>
+    //   )}
+    // </Context.Consumer>;
     return (
       <div className="windowField">
-        <Search handleAddClick={this.handleAddClick} />
-        <Find handleFind={this.handleFind} allTasks={this.state.allTasks} />
+        <Search
+          handleAddClick={this.handleAddClick}
+          whatIsLang={this.state.appLang}
+        />
+        <Find
+          handleFind={this.handleFind}
+          allTasks={this.state.allTasks}
+          whatIsLang={this.state.appLang}
+        />
         <TaskField
           allTasks={allTasks}
           handleDelete={this.handleDeleteTask}
@@ -125,6 +145,7 @@ class Window extends React.Component {
         <ModalWindow
           handleCheckBox={this.handleCheckBox}
           isShowModal={this.state.isShowModal}
+          handleAppLanguage={this.handleAppLanguage}
         />
         <Settings handleSettingsButon={this.handleSettingsButon} />
       </div>

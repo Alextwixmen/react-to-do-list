@@ -1,5 +1,6 @@
 import React from "react";
 import "./Search.css";
+import Context from "../..";
 
 class Search extends React.Component {
   constructor(props) {
@@ -17,25 +18,42 @@ class Search extends React.Component {
     this.setState({ taskText: "" });
   };
   render() {
+    // console.log(this.props.whatIsLang);
     return (
-      <div className="searchWindow">
-        <form className="searchField">
-          <input
-            className="inputSearch"
-            value={this.state.taskText}
-            type="input"
-            onChange={this.handleChange}
-            placeholder="Add Task"
-            name="task"
-            id="task"
-          />
-          <div className="buttons">
-            <button className="addBtn btns" onClick={this.handleClick}>
-              Add
-            </button>
-          </div>
-        </form>
-      </div>
+      <Context.Consumer>
+        {(value) => {
+          let btnLang;
+          let inputLang;
+          if (this.props.whatIsLang === "rus") {
+            btnLang = value.addTaskBtn.rus;
+            inputLang = value.addInput.rus;
+          } else {
+            inputLang = value.addInput.eng;
+            btnLang = value.addTaskBtn.eng;
+          }
+          // console.log(appLang);
+          return (
+            <div className="searchWindow">
+              <form className="searchField">
+                <input
+                  className="inputSearch"
+                  value={this.state.taskText}
+                  type="input"
+                  onChange={this.handleChange}
+                  placeholder={inputLang}
+                  name="task"
+                  id="task"
+                />
+                <div className="buttons">
+                  <button className="addBtn btns" onClick={this.handleClick}>
+                    {btnLang}
+                  </button>
+                </div>
+              </form>
+            </div>
+          );
+        }}
+      </Context.Consumer>
     );
   }
 }
