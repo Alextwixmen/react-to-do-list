@@ -14,7 +14,9 @@ class InactiveTask extends React.Component {
               <div className="task inactiveTask" key={element.value + index}>
                 {element.value}
                 <button
-                  onClick={() => this.props.handleDelete({ ...element }.id)}
+                  onClick={() =>
+                    this.props.handleDelete({ ...element }.id, "inactive")
+                  }
                   className="taskButtons deleteTask"
                 >
                   <i className="fa fa-trash"></i>

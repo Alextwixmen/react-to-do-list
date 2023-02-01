@@ -13,6 +13,7 @@ class TaskField extends React.Component {
           allTasks={this.props.allTasks}
           handleDelete={this.props.handleDelete}
           handleDoneClick={this.props.handleDoneClick}
+          whatIsLang={this.props.whatIsLang}
         />
         <InactiveTask
           allTasks={this.props.allTasks}

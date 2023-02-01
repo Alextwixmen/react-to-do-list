@@ -66,13 +66,19 @@ class Window extends React.Component {
       }),
     });
   };
-  handleDeleteTask = (id) => {
-    if (this.state.delWithoutConfirm) {
+  handleDeleteTask = (id, isInactive) => {
+    let textOfConfirmation;
+    if (this.state.appLang === "rus") {
+      textOfConfirmation = "Разрешить удаление?";
+    } else {
+      textOfConfirmation = "Allow deletion of task?";
+    }
+    if (this.state.delWithoutConfirm || isInactive) {
       this.setState({
         allTasks: this.state.allTasks.filter((elem) => elem.id != id),
       });
     } else {
-      if (window.confirm("Разрешить удаление?")) {
+      if (window.confirm(textOfConfirmation)) {
         this.setState({
           allTasks: this.state.allTasks.filter((elem) => elem.id != id),
         });
@@ -118,14 +124,6 @@ class Window extends React.Component {
     if (this.state.filterText != "") {
       allTasks = this.filteredArr;
     }
-
-    // <Context.Consumer>
-    //   {(value) => (
-    //     <div className="App">
-    //       <Window />
-    //     </div>
-    //   )}
-    // </Context.Consumer>;
     return (
       <div className="windowField">
         <Search
@@ -141,11 +139,13 @@ class Window extends React.Component {
           allTasks={allTasks}
           handleDelete={this.handleDeleteTask}
           handleDoneClick={this.handleDoneClick}
+          whatIsLang={this.state.appLang}
         />
         <ModalWindow
           handleCheckBox={this.handleCheckBox}
           isShowModal={this.state.isShowModal}
           handleAppLanguage={this.handleAppLanguage}
+          whatIsLang={this.state.appLang}
         />
         <Settings handleSettingsButon={this.handleSettingsButon} />
       </div>

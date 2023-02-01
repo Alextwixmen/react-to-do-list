@@ -8,6 +8,26 @@ const lang = {
   findInput: { rus: "Поиск таски", eng: "Find Task" },
   addInput: { rus: "Добавить таску", eng: "Add Task" },
   addTaskBtn: { rus: "Добавить", eng: "Add" },
+  checkBoxConfirmDelete: {
+    rus: "Удалять задачу без подтверждения",
+    eng: "Delete task without confirmation",
+  },
+  langSelectionHeader: {
+    rus: "Выберите язык приложения",
+    eng: "Select app language ",
+  },
+  engRadioBtn: {
+    rus: "Английский",
+    eng: "English",
+  },
+  rusRadioBtn: {
+    rus: "Русский",
+    eng: "Russian",
+  },
+  doneBtn: {
+    rus: "Выполнено",
+    eng: "Done",
+  },
 };
 root.render(
   <Context.Provider value={lang}>

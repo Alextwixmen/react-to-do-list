@@ -12,7 +12,6 @@ class Find extends React.Component {
     this.props.handleFind(taskText);
   };
   render() {
-    console.log("рендерим файнд");
     return (
       <Context.Consumer>
         {(value) => {
@@ -22,7 +21,6 @@ class Find extends React.Component {
           } else {
             appLang = value.findInput.eng;
           }
-          // console.log(value);
           return (
             <div className="FindWindow">
               <div className="findField">
