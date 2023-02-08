@@ -29,6 +29,7 @@ const lang = {
     eng: "Done",
   },
 };
+
 root.render(
   <Context.Provider value={lang}>
     <App />

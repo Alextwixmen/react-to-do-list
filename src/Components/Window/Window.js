@@ -27,6 +27,7 @@ class Window extends React.Component {
     };
     this.filteredArr = undefined;
   }
+
   onClickOutsideHandler = (e) => {
     if (
       e.target.closest(".modalWindow") ||
@@ -36,9 +37,11 @@ class Window extends React.Component {
       this.setState({ isShowModal: false });
     }
   };
+
   componentDidMount() {
     window.addEventListener("click", this.onClickOutsideHandler);
   }
+
   handleAddClick = (taskText, state) => {
     if (taskText.trim("") != "") {
       this.setState({
@@ -66,13 +69,16 @@ class Window extends React.Component {
       }),
     });
   };
+
   handleDeleteTask = (id, isInactive) => {
     let textOfConfirmation;
+
     if (this.state.appLang === "rus") {
       textOfConfirmation = "Разрешить удаление?";
     } else {
       textOfConfirmation = "Allow deletion of task?";
     }
+
     if (this.state.delWithoutConfirm || isInactive) {
       this.setState({
         allTasks: this.state.allTasks.filter((elem) => elem.id != id),
@@ -89,6 +95,7 @@ class Window extends React.Component {
   // нужно отправлять отфильтрованный стейт
   handleFind = (taskText) => {
     this.setState({ filterText: taskText });
+
     if (taskText != "") {
       let findTextWithoutSpaces = taskText.replace(/^\s+|\s+$|\s+(?=\s)/g, "");
       this.filteredArr = this.state.allTasks.filter((task) => {
@@ -109,9 +116,11 @@ class Window extends React.Component {
   handleCheckBox = (checkBoxValue) => {
     this.setState({ delWithoutConfirm: checkBoxValue });
   };
+
   handleSettingsButon = () => {
     this.setState({ isShowModal: !this.state.isShowModal });
   };
+
   handleAppLanguage = (e) => {
     if (e.target.className === "rus") {
       this.setState({ appLang: "rus" });
@@ -121,9 +130,11 @@ class Window extends React.Component {
   };
   render() {
     let allTasks = this.state.allTasks;
+
     if (this.state.filterText != "") {
       allTasks = this.filteredArr;
     }
+
     return (
       <div className="windowField">
         <Search
