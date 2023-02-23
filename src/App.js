@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import Window from "./Components/Window/Window";
+import { Window } from "./Components/Window/Window";
 class App extends React.Component {
   render() {
     return (

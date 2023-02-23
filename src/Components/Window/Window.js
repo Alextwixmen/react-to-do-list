@@ -1,10 +1,12 @@
 import React from "react";
+import { ModalWindow } from "../ModalSettings/ModalWindow";
 import Search from "../Search/Search";
 import "./Window.css";
-import TaskField from "../TaskField/TaskField";
+import { TaskField } from "../TaskField/TaskField";
 import Find from "../Find/Find";
-import ModalWindow from "../ModalSettings/ModalWindow";
 import Settings from "../Settings/Settings";
+import { ErrorBoundary } from "../ErrorBoundaryComponent/ErrorBoundaryComponent";
+
 function makeid(length) {
   let result = "";
   let characters =
@@ -137,10 +139,13 @@ class Window extends React.Component {
 
     return (
       <div className="windowField">
-        <Search
-          handleAddClick={this.handleAddClick}
-          whatIsLang={this.state.appLang}
-        />
+        <ErrorBoundary>
+          <Search
+            handleAddClick={this.handleAddClick}
+            whatIsLang={this.state.appLang}
+          />
+        </ErrorBoundary>
+
         <Find
           handleFind={this.handleFind}
           allTasks={this.state.allTasks}
@@ -163,4 +168,4 @@ class Window extends React.Component {
     );
   }
 }
-export default Window;
+export { Window };

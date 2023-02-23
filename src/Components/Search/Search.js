@@ -1,7 +1,7 @@
 import React from "react";
 import "./Search.css";
 import Context from "../..";
-
+import { ErrorBoundary } from "../ErrorBoundaryComponent/ErrorBoundaryComponent";
 class Search extends React.Component {
   constructor(props) {
     super(props);
@@ -21,6 +21,9 @@ class Search extends React.Component {
   };
 
   render() {
+    if (this.state.taskText === "zopa") {
+      throw new Error();
+    }
     let btnLang;
 
     let inputLang;

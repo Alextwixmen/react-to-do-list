@@ -22,4 +22,4 @@ class TaskField extends React.Component {
   }
 }
 
-export default TaskField;
+export { TaskField };

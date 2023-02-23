@@ -1,8 +1,9 @@
 import React from "react";
 import "./ModalWindow.css";
-import Context from "../..";
+import Context from "../../index";
 
 class ModalWindow extends React.Component {
+  // static contextType = Context;
   constructor(props) {
     super(props);
     this.chekBox = false;
@@ -86,4 +87,4 @@ class ModalWindow extends React.Component {
 // в свойство класса contextType мы можем кинуть наш объект Context, созданный с помощью React.createContext в index.js и теперь иметь доступ к этому объекту
 // через this.context. В этом мы  получаем доступ к контексту, как во всех методах жизненного цикла, так и в рендер-методе.
 // ModalWindow.contextType = Context;
-export default ModalWindow;
+export { ModalWindow };
